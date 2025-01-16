@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import { api } from "./api.js";
 
@@ -6,7 +7,7 @@ const app = express();
 app.use(api);
 
 // This code is responsible for serving the frontend files.
-const frontendFiles = process.cwd() + "/dist";
+const frontendFiles = path.join(__dirname, '../../dist');
 app.use(express.static(frontendFiles));
 app.get("/*", (_, res) => {
   res.sendFile(frontendFiles + "/index.html");
